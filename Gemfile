@@ -112,7 +112,7 @@ source 'https://rails-assets.org' do
   # for markdown editors
   gem 'rails-assets-bootstrap-markdown'
   gem 'rails-assets-markdown'
-  gem 'rails-assets-to-markdown'
+  gem 'rails-assets-to-markdown', '~> 1.3.0'
 end
 
 # as date picker
