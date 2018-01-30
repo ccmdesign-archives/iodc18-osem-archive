@@ -58,7 +58,7 @@ elif [[ "$ID" == "centos" || "$VERSION" == "7"  ]]; then
 fi
 
 echo -e "\ninstalling your bundle...\n"
-su - vagrant -c "cd /vagrant/; bundle install --quiet"
+su - vagrant -c "cd /vagrant/; bundle install"
 
 # Configure the database if it isn't
 if [ ! -f /vagrant/config/database.yml ] && [ -f /vagrant/config/database.yml.example ]; then
