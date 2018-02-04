@@ -4,6 +4,8 @@ class ConferenceRegistrationsController < ApplicationController
   authorize_resource :conference_registrations, class: Registration, except: [:new, :create]
   before_action :set_registration, only: [:edit, :update, :destroy, :show]
 
+  layout false
+
   def new
     @registration = Registration.new(conference_id: @conference.id)
 
