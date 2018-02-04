@@ -839,7 +839,9 @@
 
         <form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer">
             <% if current_user %>
-                Pre Registration DONE!
+                <h1 style="text-align: center">
+                    DONE! / ¡HECHO!
+                </h1>
             <% else %>
                 <div class="section">
                     <% unless current_user %>
