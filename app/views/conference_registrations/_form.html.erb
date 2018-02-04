@@ -834,11 +834,13 @@
 
     <main role="main" class="wrapper"> <!-- main content starts here -->
         <div class="callout callout--small">
-            <h1>Pre Register</h1>
+            <h1>Pre Register / Pre Registro</h1>
         </div>
 
         <form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer">
-            <% if not current_user %>
+            <% if current_user %>
+                Pre Registration DONE!
+            <% else %>
                 <div class="section">
                     <% unless current_user %>
                         <div>
@@ -868,26 +870,26 @@
                         </label>
                     <% end %>
                 </div>
+
+                <div class="section" style="display: none;">
+                    <%= semantic_form_for(@registration, url: conference_conference_registration_path(@conference.short_title)) do |f| %>
+                        <%= f.input :arrival, as: :string, label: 'Your arrival time', hint: "Leave blank if not sure",
+                                    input_html: { value: (f.object.arrival.to_formatted_s(:db_without_seconds) unless f.object.arrival.nil?),
+                                    id: 'registration-arrival-datepicker', start_date: @conference.start_date,
+                                    end_date: @conference.end_date} %>
+
+                        <%= f.input :departure, as: :string, label: 'Your departure time', hint: "Leave blank if not sure",
+                                    input_html: { value: (f.object.departure.to_formatted_s(:db_without_seconds) unless f.object.departure.nil?),
+                                    id: 'registration-departure-datepicker'} %>
+                    <% end %>
+                </div>
+
+                <div class="section">
+                    <button class="button" type="subimit">
+                        Submit
+                    </button>
+                </div>
             <% end %>
-
-            <div class="section" style="display: none;">
-                <%= semantic_form_for(@registration, url: conference_conference_registration_path(@conference.short_title)) do |f| %>
-                    <%= f.input :arrival, as: :string, label: 'Your arrival time', hint: "Leave blank if not sure",
-                                input_html: { value: (f.object.arrival.to_formatted_s(:db_without_seconds) unless f.object.arrival.nil?),
-                                id: 'registration-arrival-datepicker', start_date: @conference.start_date,
-                                end_date: @conference.end_date} %>
-
-                    <%= f.input :departure, as: :string, label: 'Your departure time', hint: "Leave blank if not sure",
-                                input_html: { value: (f.object.departure.to_formatted_s(:db_without_seconds) unless f.object.departure.nil?),
-                                id: 'registration-departure-datepicker'} %>
-                <% end %>
-            </div>
-
-            <div class="section">
-                <button class="button" type="subimit">
-                    Submit
-                </button>
-            </div>
 
         </form>
 
