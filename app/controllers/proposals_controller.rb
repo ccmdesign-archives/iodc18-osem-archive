@@ -21,6 +21,7 @@ class ProposalsController < ApplicationController
     @user = User.new
     @url = conference_program_proposals_path(@conference.short_title)
     @languages = @program.languages_list
+    render :layout => false
   end
 
   def edit
@@ -40,7 +41,7 @@ class ProposalsController < ApplicationController
         sign_in(@user)
       else
         flash.now[:error] = "Could not save user: #{@user.errors.full_messages.join(', ')}"
-        render action: 'new'
+        render :layout => false, action: 'new'
         return
       end
     end
@@ -53,7 +54,7 @@ class ProposalsController < ApplicationController
     track = Track.find_by(id: params[:event][:track_id])
     if track && !track.cfp_active
       flash.now[:error] = 'You have selected a track that doesn\'t accept proposals'
-      render action: 'new'
+      render :layout => false, action: 'new'
       return
     end
 
@@ -62,7 +63,7 @@ class ProposalsController < ApplicationController
       redirect_to conference_program_proposals_path(@conference.short_title), notice: 'Proposal was successfully submitted.'
     else
       flash.now[:error] = "Could not submit proposal: #{@event.errors.full_messages.join(', ')}"
-      render action: 'new'
+      render :layout => false, action: 'new'
     end
   end
 
