@@ -838,6 +838,7 @@
         </div>
 
         <form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer">
+            <%= csrf_meta_tags %>
             <% if current_user %>
                 <h1 style="text-align: center">
                     DONE! / ¡HECHO!
