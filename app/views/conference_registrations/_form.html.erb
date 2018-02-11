@@ -838,7 +838,7 @@
         </div>
 
         <!-- form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer"-->
-        <%= semantic_form_for(@registration, url: conference_conference_registration_path(@conference.short_title), :html => { class => "form wrapper-fixer" }) do |f|%>
+        <%= semantic_form_for(@registration, url: conference_conference_registration_path(@conference.short_title), html: { class => "form wrapper-fixer" }) do |f|%>
             <%= csrf_meta_tags %>
             <% if current_user %>
                 <h1 style="text-align: center">
