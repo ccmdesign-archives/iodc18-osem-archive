@@ -837,7 +837,8 @@
             <h1>Pre Register / Pre Registro</h1>
         </div>
 
-        <form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer">
+        <!-- form action="<%= conference_conference_registration_path(@conference.short_title) %>" method="POST" class="form wrapper-fixer"-->
+        <%= semantic_form_for(@registration, url: conference_conference_registration_path(@conference.short_title)) do |f|%>
             <%= csrf_meta_tags %>
             <% if current_user %>
                 <h1 style="text-align: center">
@@ -889,6 +890,9 @@
                     </div>
                 %>
 
+                <input id="registration-arrival-datepicker" type="hidden" name="registration[arrival]">
+                <input id="registration-departure-datepicker" type="hidden" name="registration[departure]">
+
                 <div class="section">
                     <button class="button" type="subimit">
                         Submit
@@ -896,7 +900,8 @@
                 </div>
             <% end %>
 
-        </form>
+        <!-- /form -->
+        <% end %>
 
     </main>
 
