@@ -45,3 +45,11 @@
             =link_to "github.", "https://github.com/openSUSE/osem"
     = yield :script_body
     = piwik_tracking_tag
+
+    -# Global site tag (gtag.js) - Google Analytics
+    %script{ :async => "", :await => "", :src => "https://www.googletagmanager.com/gtag/js?id=UA-114213094-1"}
+    :javascript
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-114213094-1');
